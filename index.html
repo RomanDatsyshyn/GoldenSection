@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <meta charset="utf-8" />
+    <script src="./golden.js"></script>
+
+    <title>
+      Golden section method of 1D minimization | Lab1 - Datsyshyn Roman
+    </title>
+
+    <script src="https://unpkg.com/mathjs@7.3.0/dist/math.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Лабораторна робота №1</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" style="color: aliceblue"
+                >Виконав - Дацишин Роман</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-2">
+            <img src="./logo.jpg" alt="НУ ЛП" class="img-fluid logo" />
+          </div>
+          <div class="col-sm-10">
+            <h1>Методи синтезу та оптимізації</h1>
+            <p class="lead">Golden section method of 1D minimization</p>
+            <div class="input-group input-group-lg">
+              <div class="input-group-prepend">
+                <span
+                  class="input-group-text bg-light"
+                  id="inputGroup-sizing-lg"
+                  >Введіть f(x), [a,b] та ε:</span
+                >
+              </div>
+              <input
+                type="text"
+                id="data"
+                value="2*x+3.5*x*x-(5/3)*x*x*x+0.5*x*x*x*x, [0;0.5], 0.001"
+                class="form-control"
+                aria-label="Sizing example input"
+                aria-describedby="inputGroup-sizing-lg"
+              />
+              <button
+                type="button"
+                onclick="minimize()"
+                class="btn btn-success btn-lg"
+              >
+                Мінімізувати
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="content demo">
+      <div id="large-header" class="large-header">
+        <canvas id="demo-canvas"></canvas>
+        <h1 class="main-title">
+          <span class="thin">Golden section</span>
+        </h1>
+      </div>
+    </div>
+
+    <section class="py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <h2>Графік f(x), [a,b]:</h2>
+            <div id="container" style="width: 100%; height: 550px">
+              <div id="plot"></div>
+            </div>
+          </div>
+          <div class="col-6">
+            <h2>Результати:</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">a</th>
+                  <th scope="col">b</th>
+                  <th scope="col">a-b</th>
+                  <th scope="col">x1</th>
+                  <th scope="col">x2</th>
+                  <th scope="col">f(x1)</th>
+                  <th scope="col">f(x2)</th>
+                </tr>
+              </thead>
+              <tbody id="math"></tbody>
+            </table>
+            <h2>Відповідь:</h2>
+            <hr />
+            <div id="math2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-3 alert-dark">
+      <div class="container">
+        <p class="m-0 text-center">&copy; DRV 2020</p>
+      </div>
+    </footer>
+
+    <!-- partial -->
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/TweenLite.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/EasePack.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/499416/demo.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
